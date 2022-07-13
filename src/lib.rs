@@ -174,16 +174,6 @@ impl Contract {
     }
 
 
-
-
-    // #[handle_result]
-    // pub fn gethash(token_list:String)->Result<()>{
-         
-    //     let v: Value = serde_json::from_str(&token_list)?;
-        
-    //     Ok(())
-    // }
-
     pub fn ft_token_allocation(&self) {
         log!("Account @{:?} ",self.token_allocation );    
     }
