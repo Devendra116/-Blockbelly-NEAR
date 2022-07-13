@@ -12,5 +12,24 @@ echo %CONTRACT_NAME%
 # init commands
 near call %CONTRACT_NAME% new "{\"owner_id\": \""%CONTRACT_NAME%"\", \"total_supply\": \"10000000000000000\", \"metadata\": { \"spec\": \"ft-1.0.0\", \"name\": \"demoA\", \"symbol\": \"dm\", \"decimals\": 8 },  \"token_list\":[\"token1\",\"token2\",\"token3\",\"token4\",\"token5\"],\"token_alloc\":[\"10\",\"20\",\"30\",\"25\",\"25\"],\"input_token\":\"NEAR\"}"  --accountId %CONTRACT_NAME%
 
+near view %CONTRACT_NAME% ft_metadata 
+near view %CONTRACT_NAME% ft_total_supply  
+near view %CONTRACT_NAME% ft_balance_of "{\"account_id\": \"%CONTRACT_NAME%\"}"
+near view %CONTRACT_NAME% ft_balance_of "{\"account_id\": \"dev-1657337820594-50401528601494\"}"
 near view %CONTRACT_NAME% ft_token_allocation
 near view %CONTRACT_NAME% ft_token_allocation2  
+
+
+near call %CONTRACT_NAME% ft_mint "{\"receiver_id\": \"dev-1657337820594-50401528601494\", \"amount\": \"500\"}" --accountId %CONTRACT_NAME%  --amount 0.00093
+near call %CONTRACT_NAME% ft_mint "{\"receiver_id\": \"dev-1657337820594-50401528601494\", \"amount\": \"500\"}" --accountId %CONTRACT_NAME%  --amount 0.00072
+near call %CONTRACT_NAME% ft_burn "{\"account_id\": \"dev-1657337820594-50401528601494\", \"amount\": \"55\"}" --accountId %CONTRACT_NAME%  --amount 0.00072
+
+
+# Other commands 
+near view %CONTRACT_NAME% internal_storage_unregister
+near view %CONTRACT_NAME% storage_balance_bounds 
+
+# Note:
+- while using testnet account do not include whitespaces in account adress
+- If the account is not registered for the index token then we are require to attach -0.00093 NEAR 
+and if the account is already registered for index token then we are require to attach -0.00072 NEAR
