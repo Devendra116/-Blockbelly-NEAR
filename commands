@@ -1,0 +1,15 @@
+#build wasm wasmFile
+.\build.bat
+
+# dev deploy
+near dev-deploy --wasmFile res/blockbelly_defi.wasm
+
+# use this commands on windows cmd 
+
+set CONTRACT_NAME=dev-1657724037256-99065376699424
+echo %CONTRACT_NAME%
+
+# init commands
+near call %CONTRACT_NAME% new "{\"owner_id\": \""%CONTRACT_NAME%"\", \"total_supply\": \"10000000000000000\", \"metadata\": { \"spec\": \"ft-1.0.0\", \"name\": \"demoA\", \"symbol\": \"dm\", \"decimals\": 8 },  \"token_list\":[\"token1\",\"token2\",\"token3\",\"token4\",\"token5\"],\"token_alloc\":[\"10\",\"20\",\"30\",\"25\",\"25\"] }"  --accountId %CONTRACT_NAME%
+
+near view %CONTRACT_NAME% ft_token_allocation2  
