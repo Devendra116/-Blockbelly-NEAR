@@ -108,10 +108,10 @@ impl Contract {
         amount: U128,
     ) {
         //get initial storage usage
-        assert!(
-            amount.0 <= 1000, 
-            "Cannot mint more than 1000 tokens"
-        ); 
+        // assert!(
+        //     amount.0 <= 1000, 
+        //     "Cannot mint more than 1000 tokens"
+        // ); 
 
         let initial_storage_usage = env::storage_usage();
 
