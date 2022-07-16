@@ -113,6 +113,9 @@ impl Contract {
         //     "Cannot mint more than 1000 tokens"
         // ); 
 
+        //Checks only contract owner can mint tokens  
+        assert!(env::current_account_id()==env::signer_account_id(),"Only Contract owner can Mint tokens");
+
         let initial_storage_usage = env::storage_usage();
 
         let mut amount_for_account = self.token.accounts.get(&receiver_id).unwrap_or(0); 
@@ -147,7 +150,9 @@ impl Contract {
         account_id:AccountId,
         amount:U128,
     ){
-        // creating burn function
+        //Checks only contract owner can burn tokens  
+        assert!(env::current_account_id()==env::signer_account_id(),"Only Contract owner can Mint tokens");
+   
         assert!(amount.0 < self.token.total_supply, "You cannot burn all token");
         
         let initial_storage_usage=env::storage_usage();

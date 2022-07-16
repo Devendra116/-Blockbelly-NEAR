@@ -6,11 +6,12 @@ near dev-deploy --wasmFile res/blockbelly_defi.wasm
 
 # use this commands on windows cmd 
 
-set CONTRACT_NAME=dev-1657724037256-99065376699424
+set CONTRACT_NAME=dev-1657948175783-44780134253992
 echo %CONTRACT_NAME%
 
+
 # init commands
-near call %CONTRACT_NAME% new "{\"owner_id\": \""%CONTRACT_NAME%"\", \"total_supply\": \"10000000000000000\", \"metadata\": { \"spec\": \"ft-1.0.0\", \"name\": \"demoA\", \"symbol\": \"dm\", \"decimals\": 8 },  \"token_list\":[\"token1\",\"token2\",\"token3\",\"token4\",\"token5\"],\"token_alloc\":[\"10\",\"20\",\"30\",\"25\",\"25\"],\"input_token\":\"NEAR\"}"  --accountId %CONTRACT_NAME%
+near call %CONTRACT_NAME% new "{\"owner_id\": \""%CONTRACT_NAME%"\", \"total_supply\": \"10000000000000000\", \"metadata\": { \"spec\": \"ft-1.0.0\", \"name\": \"demoB\", \"symbol\": \"dm\", \"decimals\": 8 },  \"token_list\":[\"token1\",\"token2\",\"token3\",\"token4\",\"token5\"],\"token_alloc\":[\"10\",\"20\",\"30\",\"25\",\"25\"],\"input_token\":\"NEAR\"}"  --accountId %CONTRACT_NAME%
 
 near view %CONTRACT_NAME% ft_metadata 
 near view %CONTRACT_NAME% ft_total_supply  
@@ -24,6 +25,8 @@ near call %CONTRACT_NAME% ft_mint "{\"receiver_id\": \"dev-1657337820594-5040152
 near call %CONTRACT_NAME% ft_mint "{\"receiver_id\": \"dev-1657337820594-50401528601494\", \"amount\": \"500\"}" --accountId %CONTRACT_NAME%  --amount 0.00072
 near call %CONTRACT_NAME% ft_burn "{\"account_id\": \"dev-1657337820594-50401528601494\", \"amount\": \"55\"}" --accountId %CONTRACT_NAME%  --amount 0.00072
 
+
+near call %CONTRACT_NAME% ft_mint "{\"receiver_id\": \"dev-1657337820594-50401528601494\", \"amount\": \"500\"}" --accountId d_c.testnet  --amount 0.00072
 
 # Other commands 
 near view %CONTRACT_NAME% internal_storage_unregister
